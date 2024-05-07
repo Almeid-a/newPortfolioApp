@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     textShadowColor: '#6b21a8',
     textShadowOffset: { width: 4, height: 4 },
     textShadowRadius: 5,
-    fontSize: 35
+    fontSize: 30
   },
   text: {
     color: '#ffffff',
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     textShadowColor: '#000',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 5,
-    fontSize: 20
+    fontSize: 18
   },
 });
 

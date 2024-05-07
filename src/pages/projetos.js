@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet , ImageBackground, TouchableOpacity, Image, Modal, TouchableWithoutFeedback} from 'react-native';
+import { View, Text, ScrollView, StyleSheet , ImageBackground, TouchableOpacity, Image, Modal, TouchableWithoutFeedback, Dimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ProjectModal from '../modal/ActionModal.js'
 import * as Animatable from 'react-native-animatable';
+
+const { width } = Dimensions.get('window');
+const smallerDevice = width < 400;
 
 class Projetos extends Component {
   constructor(props) {
@@ -85,6 +88,21 @@ class Projetos extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity className="bg-slate-800 rounded mb-4 border border-white" onPress={() => this.abrirModal({ 
+                  nome: 'APP - Portfólio',
+                  descricao: 'O app possui três menus: Home, Projetos e Certificados.\n\nA tela inicial serve como uma apresentação, enquanto a segunda mostra os projetos realizados e, por último, a página de formação e certificados exibe minha trajetória educacional e as conquistas obtidas.',
+                  tecnologias: 'React Native e NativeWind.',
+                  imagens: [
+                    require('../images/PortfolioApp-Home.jpg'),
+                    require('../images/PortfolioApp-Projetos.jpg'),
+                    require('../images/PortfolioApp-Certificados.jpg')
+                  ],
+                  link: 'https://github.com/Almeid-a/newPortfolioApp'
+                })}>
+                  <Image source={require('../images/PortfolioApp-Home.jpg')} className="w-full h-64 mb-2" />
+                  <Text className="text-center mb-2" style={[styles.text, { fontSize: 20 }]}>APP - PORTFÓLIO</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity className="bg-slate-800 rounded mb-4 border border-white" onPress={() => this.abrirModal({ 
                   nome: 'APP - Cronometro',
                   descricao: 'Trata-se de um aplicativo de cronômetro que oferece a funcionalidade de salvar cada intervalo de tempo registrado em um histórico.\n\nIsso permite aos usuários acompanhar e revisitar seus registros anteriores, fornecendo uma visão detalhada do tempo decorrido em diferentes momentos. ',
                   tecnologias: 'React Native e AsyncStorage',
@@ -121,7 +139,7 @@ class Projetos extends Component {
               <TouchableWithoutFeedback onPress={this.fecharModal}>
                 <View className="flex-1 -z-1 bg-black opacity-90"/>
               </TouchableWithoutFeedback>
-              <View className="flex absolute mt-[30%] justify-center items-center">
+              <View className="flex-1 z-50 absolute justify-center items-center" style={{marginTop: smallerDevice ?  5 : 150}}>
                 <ProjectModal projeto={projetoSelecionado} onClose={this.fecharModal} />
               </View>
             </Modal>
@@ -141,7 +159,7 @@ const styles = StyleSheet.create({
     textShadowColor: '#6b21a8',
     textShadowOffset: { width: 4, height: 4 },
     textShadowRadius: 5,
-    fontSize: 35
+    fontSize: 30
   },
   text: {
     color: '#FFFFFF',

@@ -14,11 +14,11 @@ export function Routes(){
                 tabBarStyle:{
                     backgroundColor: '#151C2E',
                     borderTopWidth: 0,
-                    height: 60
+                    height: 45
                 },
                 tabBarLabelStyle: {
                     color: 'white',
-                    marginBottom: 4
+                    marginBottom: 2
                 }
             }}
         >
@@ -30,7 +30,7 @@ export function Routes(){
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name={focused ? 'home' : 'home-outline'}
-                            size={30}
+                            size={25}
                             color={focused ? '#A855F7' : 'white'}
                         />
                     ),
@@ -44,7 +44,7 @@ export function Routes(){
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name={focused ? 'code' : 'code-slash-outline'}
-                            size={30}
+                            size={25}
                             color={focused ? '#A855F7' : 'white'}
                         />
                     ),
@@ -58,7 +58,7 @@ export function Routes(){
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name={focused ? 'school' : 'school-outline'}
-                            size={30}
+                            size={25}
                             color={focused ? '#A855F7' : 'white'}
                         />
                     ),

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Linking } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Linking, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 
@@ -12,40 +12,42 @@ const ProjectModal = ({ projeto, onClose }) => {
 
   const renderItem = ({ item }) => (
     <View className="rounded-xl items-center">
-      <Image className="w-[350px] h-[250px] rounded mb-4" source={item} resizeMode="cover"/>
+      <Image className="w-[345px] h-[250px] rounded mb-2" source={item} resizeMode="cover"/>
     </View>
   );
 
   return (
     <SafeAreaView className="flex justify-center items-center">
-      <View className="flex justify-center text-center items-center border-2 border-black rounded mx-2">
-        <View className= "bg-slate-100 rounded p-3 items-center">
-          <Text className="mb-4" style={styles.title}>{projeto.nome}</Text>
-          <Text className="mb-2">Deslize para ver mais imagens</Text>
-          <Carousel
-            data={projeto.imagens}
-            renderItem={renderItem}
-            itemWidth={350}
-            itemHeight={200}
-            sliderWidth={350}
-            sliderHeight={200}
-            layout={'default'}
-            loop={false}
-            enableSnap={false}
-            snapToInterval={350} // Definindo snapToInterval igual ao itemWidth
-          />
-          <Text className="mb-4 text-center" style={styles.title}>{projeto.tecnologias}</Text>
-          <Text className="mb-4 text-center">{projeto.descricao}</Text>
-          <View className="flex flex-row justify-around gap-5">
-            <TouchableOpacity className="bg-green-700 py-3 px-6 rounded" onPress={abrirProjeto}>
-              <Text style={styles.text}>Abrir Projeto</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="bg-red-700 py-3 px-6 rounded" onPress={onClose}>
-              <Text style={styles.text}>Fechar</Text>
-            </TouchableOpacity>
+      <ScrollView className="flex-1">
+        <View className="flex justify-center text-center items-center border-2 border-black rounded">
+          <View className= "bg-slate-100 rounded items-center">
+            <Text className="mb-1" style={styles.title}>{projeto.nome}</Text>
+            <Text className="mb-1">Deslize para ver mais imagens</Text>
+            <Carousel
+              data={projeto.imagens}
+              renderItem={renderItem}
+              itemWidth={350}
+              itemHeight={200}
+              sliderWidth={350}
+              sliderHeight={200}
+              layout={'default'}
+              loop={false}
+              enableSnap={false}
+              snapToInterval={350} // Definindo snapToInterval igual ao itemWidth
+            />
+            <Text className="mb-1 text-center" style={styles.title}>{projeto.tecnologias}</Text>
+            <Text className="mb-1 text-center p-2">{projeto.descricao}</Text>
+            <View className="flex flex-row gap-5 mb-2">
+              <TouchableOpacity className="bg-green-700 py-3 px-6 rounded" onPress={abrirProjeto}>
+                <Text style={styles.text}>Abrir Projeto</Text>
+              </TouchableOpacity>
+              <TouchableOpacity className="bg-red-700 py-3 px-6 rounded" onPress={onClose}>
+                <Text style={styles.text}>Fechar</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

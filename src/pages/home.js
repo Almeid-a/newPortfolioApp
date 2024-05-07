@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, ImageBackground, TouchableOpacity, Linking, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, Image, ImageBackground, TouchableOpacity, Linking, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as Animatable from 'react-native-animatable';
+
+const { width } = Dimensions.get('window');
+const smallerDevice = width < 400;
 
 class HomeScreen extends Component {
   state = {
@@ -43,47 +46,51 @@ class HomeScreen extends Component {
 
     return (
       <ImageBackground className="flex-1" source={require('../images/background.png')}>
-        <SafeAreaView>
+        <SafeAreaView className="flex-1">
           <ScrollView className="p-4">
-            <View className="flex flex-row justify-center items-center mb-4">
-              <Text className="text-purple-500 mr-2" style={[styles.text, { fontSize: 40 }]}>Dev</Text>
-              <Text className="text-white"  style={[styles.text, { fontSize: 40 }]}>Almeida</Text>
-            </View>
+            <View className="flex justify-center h-full w-full py-6">
 
-            <View className="items-center">
-              <Image source={require('../images/Testefoto1.png')} className="w-80 h-72 rounded-[50px] mb-8" />
-              <View className="flex-1 justify-cente">
-                <Text className="text-center text-white mb-2" style={[styles.text, { fontSize: 26 }]}>Olá! Eu sou Gabriel de Almeida Rodrigues</Text>
-                <Text className="text-center text-white mb-8" style={[styles.text, { fontSize: 24 }]}>{typedText}</Text>
-                <Text className="text-lg text-white text-center mb-2" style={[styles.text, {fontSize: 16}]}>Tenho 24 anos e acabei de me formar no curso de Bacharelado em Engenharia de Software na Universidade Estadual de Ponta Grossa.</Text>
+              <View className="flex flex-row justify-center items-center">
+                   <Text className="text-purple-500 mr-2" style={[styles.text, {fontSize: smallerDevice ? 34 : 40}]}>Dev</Text>
+                   <Text className="text-white"  style={[styles.text, {fontSize: smallerDevice ? 34 : 40}]}>Almeida</Text>
               </View>
-            </View>
 
-            <Animatable.View animation="slideInRight" duration={1500} delay={100}>
-              <View className="flex flex-row justify-around mt-6">
-                <TouchableOpacity onPress={abrirCV}>
-                  <View className="border border-white rounded-full p-3">
-                    <Ionicons name="document-text" size={25} color={'white'} />
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={abrirGitHub}>
-                  <View className="border border-white rounded-full p-3">
-                    <Ionicons name="logo-github" size={24} color={'white'} />
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={abrirLinkedIn}>
-                  <View className="border border-white rounded-full p-3">
-                    <Ionicons name="logo-linkedin" size={24} color={'white'} />
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={linkWhatsapp}>
-                  <View className="border border-white rounded-full p-3">
-                    <Ionicons name="logo-whatsapp" size={24} color={'white'} />
-                  </View>
-                </TouchableOpacity>
+              <View className="items-center mt-4">
+                <Image className="w-80 rounded-[30px]" style={{height: smallerDevice ? 260 : 290}} source={require('../images/Testefoto1.png')}/>
               </View>
-            </Animatable.View>
 
+              <View className="justify-center mt-6 items-center">
+                <Text className="text-center text-white mb-2" style={[styles.text, {fontSize: smallerDevice ? 20 : 26}]}>Olá!{"\n"} Eu sou Gabriel de Almeida Rodrigues</Text>
+                <Text className="text-center text-white mb-4" style={[styles.text, {fontSize: smallerDevice ? 18 : 22}]}>{typedText}</Text>
+                <Text className="text-center text-white mb-4" style={[{fontSize: smallerDevice ? 16 : 20}]}>Tenho 24 anos e acabei de me formar no curso de Bacharelado em Engenharia de Software na Universidade Estadual de Ponta Grossa.</Text>
+              </View>
+
+              <Animatable.View animation="slideInRight" duration={1500} delay={100}>
+                <View className="flex flex-row justify-around text-center mt-6">
+                  <TouchableOpacity onPress={abrirCV}>
+                    <View className="border border-white rounded-full p-3">
+                      <Ionicons name="document-text" size={25} color={'white'} />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={abrirGitHub}>
+                    <View className="border border-white rounded-full p-3">
+                      <Ionicons name="logo-github" size={24} color={'white'} />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={abrirLinkedIn}>
+                    <View className="border border-white rounded-full p-3">
+                      <Ionicons name="logo-linkedin" size={24} color={'white'} />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={linkWhatsapp}>
+                    <View className="border border-white rounded-full p-3">
+                      <Ionicons name="logo-whatsapp" size={24} color={'white'} />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </Animatable.View>
+
+            </View>
           </ScrollView>
         </SafeAreaView>
       </ImageBackground>
@@ -95,8 +102,8 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Arvo-Bold',
     textShadowColor: '#000',
-    textShadowOffset: { width: 4, height: 4 },
-    textShadowRadius: 5,
+    textShadowOffset: { width: 2, height: 4 },
+    textShadowRadius: 4,
   },
 });
 
